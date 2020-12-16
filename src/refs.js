@@ -4,4 +4,6 @@ export default {
   mins: document.querySelector('[data-value="mins"]'),
   secs: document.querySelector('[data-value="secs"]'),
   title: document.querySelector('.title'),
+  btnStart: document.querySelector('.btnStart'),
+  btnStop: document.querySelector('.btnStop'),
 };

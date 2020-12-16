@@ -44,3 +44,17 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+button {
+  background-color: antiquewhite;
+  color: rgb(156, 54, 40);
+  border: inherit;
+  border-radius: 30%;
+  height: 40px;
+  width: 60px;
+  margin: 10px;
+}

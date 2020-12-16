@@ -1,13 +1,16 @@
 import './styles.css';
 import refs from './refs.js';
-
+let interval;
+function reset(...arr) {
+  return arr.map(el => (el.textContent = '00'));
+}
 class CountdownTimer {
   constructor(selector, targetDate) {
     this.selector = selector;
     this.targetDate = targetDate;
   }
   count() {
-    let t = this.setTime(Date.now() - new Date(this.targetDate));
+    let t = this.setTime(new Date(this.targetDate) - Date.now());
 
     refs.days.textContent = t.days;
     refs.hours.textContent = t.hours;
@@ -23,11 +26,24 @@ class CountdownTimer {
     return { days, hours, mins, secs };
   }
   start() {
-    setInterval(() => {
+    interval = setInterval(() => {
       this.count();
     }, 1000);
   }
+  stop() {
+    const { days, hours, mins, secs } = refs;
+    clearInterval(interval);
+    reset(days, hours, mins, secs);
+  }
 }
 
+refs.btnStart.addEventListener('click', () => {
+  timer.start();
+});
+
+refs.btnStop.addEventListener('click', () => {
+  timer.stop();
+});
 const timer = new CountdownTimer('#timer-1', new Date('Jul 17, 2019'));
+
 document.addEventListener('DOMContentLoaded', timer.start());
