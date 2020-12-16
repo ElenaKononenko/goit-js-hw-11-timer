@@ -1,0 +1,33 @@
+import './styles.css';
+import refs from './refs.js';
+
+class CountdownTimer {
+  constructor(selector, targetDate) {
+    this.selector = selector;
+    this.targetDate = targetDate;
+  }
+  count() {
+    let t = this.setTime(Date.now() - new Date(this.targetDate));
+
+    refs.days.textContent = t.days;
+    refs.hours.textContent = t.hours;
+    refs.mins.textContent = t.mins;
+    refs.secs.textContent = t.secs;
+    refs.title.textContent = this.targetDate.toDateString();
+  }
+  setTime(time) {
+    let days = Math.floor(time / 1000 / 60 / 60 / 24);
+    let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    let secs = Math.floor((time % (1000 * 60)) / 1000);
+    return { days, hours, mins, secs };
+  }
+  start() {
+    setInterval(() => {
+      this.count();
+    }, 1000);
+  }
+}
+
+const timer = new CountdownTimer('#timer-1', new Date('Jul 17, 2019'));
+document.addEventListener('DOMContentLoaded', timer.start());
