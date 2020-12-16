@@ -26,6 +26,7 @@ class CountdownTimer {
     return { days, hours, mins, secs };
   }
   start() {
+    this.count();
     interval = setInterval(() => {
       this.count();
     }, 1000);
@@ -44,6 +45,6 @@ refs.btnStart.addEventListener('click', () => {
 refs.btnStop.addEventListener('click', () => {
   timer.stop();
 });
-const timer = new CountdownTimer('#timer-1', new Date('Jul 17, 2019'));
+const timer = new CountdownTimer('#timer-1', new Date('Jan 1, 2021'));
 
 document.addEventListener('DOMContentLoaded', timer.start());
