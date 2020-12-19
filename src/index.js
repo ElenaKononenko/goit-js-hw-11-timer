@@ -10,7 +10,7 @@ class CountdownTimer {
     this.targetDate = targetDate;
   }
   count() {
-    let t = this.setTime(new Date(this.targetDate) - Date.now());
+    let t = this.setTime(this.targetDate - Date.now());
 
     refs.days.textContent = t.days;
     refs.hours.textContent = t.hours;
