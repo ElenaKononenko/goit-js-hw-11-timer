@@ -1,6 +1,6 @@
 import './styles.css';
 import refs from './refs.js';
-let interval;
+let interval = null;
 function reset(...arr) {
   return arr.map(el => (el.textContent = '00'));
 }
@@ -26,6 +26,7 @@ class CountdownTimer {
     return { days, hours, mins, secs };
   }
   start() {
+    clearInterval(interval);
     this.count();
     interval = setInterval(() => {
       this.count();
